@@ -1,0 +1,124 @@
+Carpeta de trabajo para la materia
+git init
+crear carpeta para el dia de hoy
+npm init -y 
+abrir carpeta con atom
+buscar archivo package.json
+buscar random names en npmjs
+instalar un paquete cualquiera
+crear archivo App.js
+ir a carpeta en linea
+node App (para correr)
+git status
+git diff
+git add .
+git commit -m "commit inicial"
+git status
+=========================
+feb 12
+las funciones son first class
+se pueden usar las funciones como elementos
+se pueden usar las funciones como strings, numeros, etc.
+al tener funciones en una variable se pueden pasar como parametros.
+backtip es AltGr y corchete derecho
+y para agregar una variable ahí, meter ${'variable'}
+los modulos son privados y para usarlos en otro lado es 
+necesario usar require('./archivo');
+======================================================================
+feb 14
+Template strings
+string interpolation
+JSON(Javascript Object Notation)
+Module Patterns
+Object literals
+	Muchos dicen que son JSON(No lo son)
+Object: es una colleccion de name/value pairs.
+var y = {}; objeto vacío.
+Inluso si hago con console.log(y), me arroja que es un objeto (vacio,
+pero objeto).
+se pueden anidar objetos literales dentro de otros objetos literales desde
+un value.
+var x = {
+name1: value,
+name2: value,
+name3:{
+	name4: valor,
+	name5: valor
+       }
+}
+se puede acceder con la notacion del punto (.), acceder a la key desde los
+brackets {}
+x.nombre
+x['nombre']
+module.exports=patterns, los cuales pueden ser: funciones,
+	metodos, objetos, constructor.
+un module puede ser enviado a un main, primero exportando
+modulo, main hace require y main declara una variable
+let=require
+codwars
+==================================================
+feb19
+hoisting solo funciona para funciones regulares, no para arrow functions
+hoisting javascript, puede darle un valor a una variable y despues declararla
+como valor.
+this funciona en funciones regulares y arrow function.
+favoritas para el callback mejor en arrow functions.
+eventos, array de funciones y prototipos, son los temas de hoy.
+js para ejecutarse en un web browser.
+como el motor v8 de google está disponible, alguien lo modificó y creo un 
+runtime para ejecutar donde quiera y darle mas galleta.
+Node tiene C++
+javascript no tiene algo llamado "evento", esos los creamos a conveniencia.
+un web server en js tiene un event emmiter (emisor de eventos).
+Con express
+app.get('/route', (handler)=>{
+	console.log('Hola')
+}
+app.listen(3000)
+localhost:3000/route
+	hola
+
+mi evento en este caso es 'route' y puede tener miles, depende de mis
+necesidades
+express es un emisor de eventos.
+el emisor de eventos está basado en un array function.
+Tenemos dos tipos de eventos.
+Usamos un core de C++, es un system events.
+Custom events, usa javascript core.
+obj[onClick]();
+lo que hacemos es un evento, la funcion es un handler
+
+Todos los objetos tienen una propiedad que apuntan a otro objeto, se les 
+llama prototipos,es una propiedad
+podemos tener cadenas de prototipos 
+objetos separados pueden compartir prototipos
+
+si viene .prototype, es porque estan agregando funcionalidad o estan
+agregando propiedades
+se llega al objeto por referencia, no por valor
+si cambio algo a un objeto, todos los que hacen referencia al objeto, 
+cambian.
+handler es la funcion o acción
+javascript es orientado a eventos
+===================================================================
+feb21
+se puede tener mas de un listener asociada en una misma funcion
+o sea que mas de una cosa puede suceder a la vez
+
+=================================================================
+feb26
+inherit junta como dos prototitpos en uno solo en forma de herencia
+.call llama una funcion this con una lista de argumentos
+en javascript los objetos tienen propiedades y funciones
+
+function greet(){
+}
+llamada a un metodo de una funcion
+
+this es un referenciador a un atributo o propiedad
+puntero a la memoria en donde está el objeto
+
+greet.call lanza un llamado a una funcion constructora como una lista de 
+argumentos
+funciona igual con .aply, con la diferencia que envia los argumentos como
+un vector
