@@ -122,3 +122,8 @@ greet.call lanza un llamado a una funcion constructora como una lista de
 argumentos
 funciona igual con .aply, con la diferencia que envia los argumentos como
 un vector
+
+=====================================================================
+feb28
+what the heck is the event loop anyway? Philip roberts
+entrar a la pagina, meterle a la pagina
