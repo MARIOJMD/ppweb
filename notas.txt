@@ -127,3 +127,32 @@ un vector
 feb28
 what the heck is the event loop anyway? Philip roberts
 entrar a la pagina, meterle a la pagina
+===============================================================
+4marzo
+setTimeout(() =>{console.log(`hola 1`);}, 4000);
+setTimeout(()=>{console.log(`hola 2`);}, 0);
+console.log(`hola 3`);
+estas funciones me imprimen segun el tiempo que le ponga
+Javascript es asincrono no bloqueable
+
+El que manda es el protocolo, no el lenguaje
+el web browser solo entiende html
+el html es inmutable, no puede cambiar
+para que el codigo se convierta omo html se usa un parsing
+los parametros se mandan por la url y body
+la informacion sensible pasa por el body con .body, para eso necesito
+body-parser
+==============================
+mar6
+ir al proveedor, registrarse
+obtener key
+empos
+
+request tiene un  object literal y tiene un callback que es
+error, response
+segun es6, si tengo dos key value pairs con el mismo nombre, puedo 
+dejar solo uno
+validar contra el error
+si hay error, salgo flujo y aviso al usuario
+si no hay error, sigo con el flujo
+

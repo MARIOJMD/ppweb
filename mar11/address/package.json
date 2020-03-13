@@ -1,0 +1,17 @@
+{
+  "name": "address",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fahrenheit-to-celsius": "^1.0.0",
+    "random-js": "^2.1.0",
+    "random-num": "^1.1.3"
+  }
+}
