@@ -156,3 +156,16 @@ validar contra el error
 si hay error, salgo flujo y aviso al usuario
 si no hay error, sigo con el flujo
 
+======================================================================
+marzo13
+Para desplegar mi app en heroku debo:
+Create heroku app
+remote repo settings
+port setting
+git init
+npm init
+.gitignore
+modificar package.json
+
+en heroky tengo un dashboard, ahi puedo create  new app
+
