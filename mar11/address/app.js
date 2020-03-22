@@ -13,19 +13,26 @@ request({url, json: true}, (error, response) => {//nombre random
 
   var fahrenheitToCelsius = require('fahrenheit-to-celsius'); //inyeccion de dependencia de convertidor
 
-  const url = 'https://api.darkskyl.net/forecast/f9027dd170726ab26f9d6d0f99a467fb/19.2433,-103.725?lang=es';
+  const url = 'https://api.darksky.net/forecast/f9027dd170726ab26f9d6d0f99a467fb/19.2433,-103.725?lang=es';
 
   request({url, json: true}, (error, response) => { //temperatura
-    var temperatura = response.body.currently.temperature;
-    var conv=fahrenheitToCelsius(temperatura);
+    let temperatura = response.body.currently.temperature;
+    var conv = fahrenheitToCelsius(temperatura); //variable de temperatura convertida
 
-    const url = 'http://open.mapquestapi.com/geocoding/v1/address?key=KEY&location=Washington,DC'
+    let lat = 38.892062;
+    let lng = -77.019912;
 
-    request({url, json: true}, (error,response ) =>{ //maquest api
-      //var location = respons.body;//
-      //console.log (location);
-      console.log(`${responseB.name} vive en la calle ${calle} y esta a ${conv}`);
-    })
+    //const url = 'http://www.mapquestapi.com/geocoding/v1/address?key=jl0OmsQSqbVHpMA2Px4oOtq5Luy5N6vn&location=Washington,DC';
+    //const url = 'https://www.mapquestapi.com/geocoding/v1/address?key=jl0OmsQSqbVHpMA2Px4oOtq5Luy5N6vn&inFormat=kvp&outFormat=json&location=Denver%2C+CO&thumbMaps=false';
+    const url = 'http://www.mapquestapi.com/geocoding/v1/address?key=jl0OmsQSqbVHpMA2Px4oOtq5Luy5N6vn&outFormat=json';
+
+    request({url, json: true}, (error,response ) =>{ //mapquest api
+      //var loc = response.body.results;
+      var loc = response.body.results[0].locations[0];
+      console.log(loc);
+
+    //console.log(`${responseB.name} vive en la calle ${calle} y esta a ${conv} grados centigrados.`); //${conv}
+  });
 
 
 
