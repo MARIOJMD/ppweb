@@ -14,11 +14,11 @@ var user = mongoose.model('User', userSchema);
 
 var myUser = user({
 	userName: 'prueba',
-	password: 'promesa'
+	password: 'tres'
 	})
 
 myUser.save().then(user => {
-	res.json(user);
+	console.log('Todo ok');
 }).catch(err =>{
-	netx(new Error(err));
+	console.log('Algo salió mal ' + err);
 });
