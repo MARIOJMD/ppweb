@@ -1,0 +1,39 @@
+esults.ejs 
+<html>
+
+<head>
+<title>Page Title</title>
+<link href="/assets/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+<ul>
+<% data.forEach(function(o) { %>
+<li><%= o.userName %> --> <%= o.password %></li>
+<% }); %>
+</ul>
+
+</body>
+
+</html> 
+app.post('/person', urlencodedParser, (req, res) => {
+// res.send('Thanks');
+console.log(req.body.userName);
+// console.log(req.body.lastname);
+//aqui empieza la busqueda
+var user = mongoose.model('User', userSchema);
+user.find({ userName: req.body.userName }, function (err, data) {
+// doc is a Document
+if (err) {
+console.log('Hubo un error');
+} else {
+if (data.length > 0) {
+// console.log(data);
+res.render('results', { data });
+//res.send(data);
+// console.log(doc);
+} else { res.send('no hay coincidencias para el criterio de busqueda'); }
+}
+});
+}); 

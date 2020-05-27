@@ -1,0 +1,11 @@
+index: <!--<h1>Este contenido es rendereado por EJS</h1>-->
+
+        <!--<p>Valor del ID <%= ID %></p><!--AMAZING, pasar un valor del backend al frontnd-->-->
+
+        <!--<h1>Imprimiendo el mensaje Hola <%= ID %> veces</h1>-->
+
+        <!--<% for(let i=1; i<=ID; i++){ %>-->
+
+            <!--<p>Hola</p>-->
+
+        <!--<% } %>-->
