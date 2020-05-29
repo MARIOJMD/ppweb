@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Page Title</title>
+        <link href="/assets/style.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <p>Resultados: </p>
+        <ul>
+            <% data.forEach((index)=>{ %>
+            <li><%= index.userName %> - <%= index.password %></li>
+            <% }); %> 
+        </ol>
+    </body>
+</html>
