@@ -20,7 +20,7 @@ var myUser = user({
 myUser.save((err) => {
 	if(err){
 		console.log('algo salio mal' + err);
-		}else{
-			console.log('todo ok');
-		}
-	});
+	}else{
+		console.log('todo ok');
+	}
+});
