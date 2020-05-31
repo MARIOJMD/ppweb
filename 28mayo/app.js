@@ -18,7 +18,7 @@ var userSchema = new Schema({//Modelo de la instancia
 });
 
 
-var user = mongoose.model('User', userSchema); //tambien iba adentro de lo de aqui abajo
+var user = mongoose.model('User', userSchema); //tambien iba adentro de lo de aqui abajo pero lo dejo global para usarlo sin declarar
 
 app.post('/result', urlencodedParser, (req, res) => {
     //aqui iba user
@@ -77,25 +77,28 @@ app.get('/add',(req, res) =>{ //agregue la ruta de add para agregar registros
 });
 
 app.post('/addResult', urlencodedParser,(req, res) =>{ //agregue la ruta de addResult para para despues de agregar
-    res.render(`addResult`);
     var userName = req.body.userName; //variables sacadas de add
     var password = req.body.password;
-    console.log(userName);
-    console.log(password);
-
-    var myUser = user({
-        userName: userName,
-        password: password
-    });
-
-    myUser.save((err) => {
-        if(err){
-            console.log('algo salio mal' + err);
+    user.find({ userName: req.body.userName }, function (err, data) { //buscar el usuario
+      if(err){
+        console.log('Ocurrió un error');
+      }else{
+        if(data.length > 0){
+          res.send('El usuario ya existe');
         }else{
-            console.log('todo ok');
-        }
+          let myUser = user({
+            userName: userName,
+            password: password
+          });
+          myUser.save().then(user => {
+            console.log("todo bien");
+          }).catch(err =>{
+            console.log("algo salió mal" + err);
+          });
+          res.render(`addResult`);
+       }
+     }
     });
-    
 });
 
 
@@ -110,4 +113,3 @@ app.post('/personjson', jsonParser, (req, res) => {
 app.listen(port, () =>{
     console.log(`Escuchando en el puerto ${port}`)
 });
-
