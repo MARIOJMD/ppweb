@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        <link href="/assets/style.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <p>Resultados: </p>
+        <table style="width:100%">
+        <tr>
+          <th>Username</th>
+          <th>Password</th> 
+          <th>id</th>
+          <th></th>
+          <th></th>
+        </tr>
+            <% data.forEach((index)=>{ %>
+            <tr>
+              <td><%=index.userName%></td>
+              <td><%=index.password%></td>
+              <td><%=index._id%></td>
+              <td><form method="POST" action="./delete/<%=index._id%>"><button type="submit">Eliminar</button></form></td>
+              <td><form method="POST" action="./update/<%=index._id%>"><button type="submit">Editar</button></form></td>
+            </tr>
+            <% }); %> 
+        <tr>
+        </table>
+        <a href="./personData">Volver<a>
+        <a href="./">Menú</a>
+    </body>
+</html>

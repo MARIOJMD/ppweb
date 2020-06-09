@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        <link href="/assets/style.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Acualizar</h1>
+        <form method="POST" action="/actualizar">
+          <label for="id">ID</label>
+          <input type="text" id="id" name="id" value="<%= data[0]._id%>" readonly>
+          <br>
+          <label for="userName">userName</label>
+          <input type="text" id="userName" name="userName">
+          <br>
+          <label for="password">Password</label>
+          <input type="text" id="password" name="password">
+          <input type="submit" value="enviar">
+        </form>
+    </body>
+</html>
