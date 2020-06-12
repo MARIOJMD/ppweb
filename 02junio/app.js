@@ -1,9 +1,12 @@
+const routes = require('./src/routes'); //busca index dentro de la ruta especificada
 const express = require('express');//Inyeccion de dependencia express
 const bodyParser = require('body-parser');
 const app = express();//App con la dependencia
 const port = 3000;//Consatante que define el puerto de escucha
 const url = "mongodb+srv://admin:admin@cluster0-qzdwl.mongodb.net/test?retryWrites=true&w=majority";
 const mongoose = require('mongoose');//Dependencia de base de datos
+
+app.use('/', routes);
 
 var Schema = mongoose.Schema; 
 
@@ -12,15 +15,15 @@ var jsonParser = bodyParser.json();
 
 mongoose.connect(url);
 
-var userSchema = new Schema({//Modelo de la instancia
+/*var userSchema = new Schema({//Modelo de la instancia
     userName: String,
     password: String
-});
+})*/;
 
 
-var user = mongoose.model('User', userSchema); //tambien iba adentro de lo de aqui abajo pero lo dejo global para usarlo sin declarar
+//var user = mongoose.model('User', userSchema); //tambien iba adentro de lo de aqui abajo pero lo dejo global para usarlo sin declarar
 
-app.post('/result', urlencodedParser, (req, res) => {
+/*app.post('/result', urlencodedParser, (req, res) => {
     //aqui iba user
     let user=mongoose.model('User', userSchema);
     user.find({}, function (err, data) {
@@ -60,7 +63,7 @@ app.use('/assets', express.static(__dirname + '/public'));//Mapeo del estilo ref
 
 app.set('view engine', 'ejs');
 
-app.get('/personData', (req, res)=>{//ruta para busqueda de resultados
+/*app.get('/personData', (req, res)=>{//ruta para busqueda de resultados
     res.render(`personData`);
 });
 app.get('/', (req, res) =>{ //agregue la ruta de index (nos redirigue a las opciones)
@@ -71,9 +74,9 @@ app.get('/add',(req, res) =>{ //agregue la ruta de add para agregar registros
     /*var userName = req.body.userName; //variables sacadas de add, a ver que rollo
     var password = req.body.password;*/
        
-});
+//});
 
-app.post('/addResult', urlencodedParser,(req, res) =>{ //agregue la ruta de addResult para para despues de agregar
+/*app.post('/addResult', urlencodedParser,(req, res) =>{ //agregue la ruta de addResult para para despues de agregar
     var userName = req.body.userName; //variables sacadas de add
     var password = req.body.password;
     user.find({ userName: req.body.userName }, function (err, data) { //buscar el usuario
@@ -158,7 +161,7 @@ app.post('/actualizar', urlencodedParser, (req, res) =>{
       res.redirect(`/result`);
     }
   });
-});
+});*/
 
 
 app.listen(port, () =>{

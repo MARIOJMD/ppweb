@@ -1,0 +1,2 @@
+traer todas las rutas y comprender que es una promesa
+ya que todo funcione hacer un refactor
