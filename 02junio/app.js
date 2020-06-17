@@ -2,21 +2,25 @@ const express = require('express');//Inyeccion de dependencia express
 const bodyParser = require('body-parser');
 const app = express();//App con la dependencia
 const port = 3000;//Consatante que define el puerto de escucha
-const url = "mongodb+srv://admin:admin@cluster0-qzdwl.mongodb.net/test?retryWrites=true&w=majority";
-const mongoose = require('mongoose');//Dependencia de base de datos
+//const url = "mongodb+srv://admin:admin@cluster0-qzdwl.mongodb.net/test?retryWrites=true&w=majority";
+//const mongoose = require('mongoose');//Dependencia de base de datos
 const routes = require('./src/routes');
+require('./src/db/connection');
 
-var Schema = mongoose.Schema; 
+//var Schema = mongoose.Schema; 
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var jsonParser = bodyParser.json();
 
-mongoose.connect(url);
+//mongoose.connect(url);
 
-var userSchema = new Schema({//Modelo de la instancia
+/*var userSchema = new Schema({//Modelo de la instancia
     userName: String,
     password: String
-});
+});*/
+app.use('/assets', express.static(__dirname + '/public'));//Mapeo del estilo referenciado como assetsI
+app.set('view engine', 'ejs');
+app.use('/', routes);
 
 
 //var user = mongoose.model('User', userSchema); //tambien iba adentro de lo de aqui abajo pero lo dejo global para usarlo sin declarar
@@ -55,11 +59,6 @@ var userSchema = new Schema({//Modelo de la instancia
     });
     res.render(`addResult`);
 });*/
-
-
-app.use('/assets', express.static(__dirname + '/public'));//Mapeo del estilo referenciado como assetsI
-app.set('view engine', 'ejs');
-app.use('/', routes);
 
 
 /*

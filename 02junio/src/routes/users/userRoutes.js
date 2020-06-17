@@ -1,19 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const url = 'mongodb+srv://admin:admin@cluster0-qzdwl.mongodb.net/test?retryWrites=true&w=majority'
-const {Schema} = mongoose;
-const userSchema = new Schema({
+//const mongoose = require('mongoose');
+//const url = 'mongodb+srv://admin:admin@cluster0-qzdwl.mongodb.net/test?retryWrites=true&w=majority'
+//const {Schema} = mongoose;
+/*const userSchema = new Schema({
   userName: String,
   password: String
-});
+});*/
+let user = require('./../../models/userModel');
+
 const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 var jsonParser = bodyParser.json();
-var user = mongoose.model('User', userSchema);
-mongoose.connect(url);
+//var user = mongoose.model('User', userSchema);
+//mongoose.connect(url);
 
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise; //promesas
 
 router.get('/', (req, res) =>{
   res.render('index');
@@ -29,17 +31,16 @@ router.post('/result', urlencodedParser, (req, res)=>{
 
 });
 
-router.get('/result', urlencodedParser, (req, res)=>{
-  //let user = mongoose.model('User', userSchema);
-  user.find({})
-  .exec()
-    .then((data)=>{
-      res.render('result', {data});
-    })
-    .catch((err)=>{
-      res.send('Algo salio mal ' + err);
-    });
+router.get('/result', urlencodedParser, async function(req, res){
+  let user = require('./../../models/userModel');
+  try{
+    let user = await user.find({});
+    res.render(`result`, {data});
+  }catch(err){
+    res.send("Error " + err);
+  }
 });
+
 
 
 /*
@@ -58,7 +59,7 @@ router.get('/result', urlencodedParser, (req, res)=>{
 router.post('/addResult', urlencodedParser, (req, res)=>{
   let userName = req.body.userName;
   let password = req.body.password;
-  let user = mongoose.model('User', userSchema);
+  //let user = mongoose.model('User', userSchema);
   user.find({userName: req.body.userName}).exec().then((data)=>{
     if(data.length > 0){
       res.send("El usuario ya existe");
