@@ -4,6 +4,7 @@ const app = express();//App con la dependencia
 const port = 3000;//Consatante que define el puerto de escucha
 const url = "mongodb+srv://admin:admin@cluster0-qzdwl.mongodb.net/test?retryWrites=true&w=majority";
 const mongoose = require('mongoose');//Dependencia de base de datos
+const routes = require('./src/routes');
 
 var Schema = mongoose.Schema; 
 
@@ -18,9 +19,9 @@ var userSchema = new Schema({//Modelo de la instancia
 });
 
 
-var user = mongoose.model('User', userSchema); //tambien iba adentro de lo de aqui abajo pero lo dejo global para usarlo sin declarar
+//var user = mongoose.model('User', userSchema); //tambien iba adentro de lo de aqui abajo pero lo dejo global para usarlo sin declarar
 
-app.post('/result', urlencodedParser, (req, res) => {
+/*app.post('/result', urlencodedParser, (req, res) => {
     //aqui iba user
     let user=mongoose.model('User', userSchema);
     user.find({}, function (err, data) {
@@ -31,7 +32,7 @@ app.post('/result', urlencodedParser, (req, res) => {
         res.render('result', {data});   
     }
 });
-});
+});*/
 
 /*app.post('/addResult', urlencodedParser, (req,res) =>{ //yo agregue esta cosa para agregar registros (urlencodePArser)
    
@@ -56,10 +57,12 @@ app.post('/result', urlencodedParser, (req, res) => {
 });*/
 
 
-app.use('/assets', express.static(__dirname + '/public'));//Mapeo del estilo referenciado como assets
-
+app.use('/assets', express.static(__dirname + '/public'));//Mapeo del estilo referenciado como assetsI
 app.set('view engine', 'ejs');
+app.use('/', routes);
 
+
+/*
 app.get('/personData', (req, res)=>{//ruta para busqueda de resultados
     res.render(`personData`);
 });
@@ -71,9 +74,9 @@ app.get('/add',(req, res) =>{ //agregue la ruta de add para agregar registros
     /*var userName = req.body.userName; //variables sacadas de add, a ver que rollo
     var password = req.body.password;*/
        
-});
+//});
 
-app.post('/addResult', urlencodedParser,(req, res) =>{ //agregue la ruta de addResult para para despues de agregar
+/*app.post('/addResult', urlencodedParser,(req, res) =>{ //agregue la ruta de addResult para para despues de agregar
     var userName = req.body.userName; //variables sacadas de add
     var password = req.body.password;
     user.find({ userName: req.body.userName }, function (err, data) { //buscar el usuario
@@ -159,7 +162,7 @@ app.post('/actualizar', urlencodedParser, (req, res) =>{
     }
   });
 });
-
+*/
 
 app.listen(port, () =>{
     console.log(`Escuchando en el puerto ${port}`)
