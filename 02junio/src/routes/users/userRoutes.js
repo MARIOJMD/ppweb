@@ -7,7 +7,7 @@ const router = express.Router();
   userName: String,
   password: String
 });*/
-let user = require('./../../models/userModel');
+var user = require('./../../models/userModel');
 
 const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -17,9 +17,9 @@ var jsonParser = bodyParser.json();
 
 //mongoose.Promise = global.Promise; //promesas
 
-router.get('/', (req, res) =>{
+/*router.get('/', (req, res) =>{
   res.render('index');
-});
+});*/
 
 router.post('/result', urlencodedParser, (req, res)=>{
   //let user = mongoose.model('User',userSchema);
@@ -31,17 +31,31 @@ router.post('/result', urlencodedParser, (req, res)=>{
 
 });
 
+
 router.get('/result', urlencodedParser, async function(req, res){
   let user = require('./../../models/userModel');
   try{
-    let user = await user.find({});
-    res.render(`result`, {data});
+    await user.find({}).exec().then((data)=>{
+      res.render(`result`, {data});
+    });
+    //res.render(`result`, {data});
   }catch(err){
     res.send("Error " + err);
+    console.log("El error es en el catch " + err);
   }
 });
 
-
+const { index} = require('../../controllers/user'); //update, delete
+const {update} = require('../../controllers/user');
+//const {delete} = require('../../controllers/user');
+const {add} = require('../../controllers/user');
+const {actualizar} = require('../../controllers/user');
+const { urlencoded } = require('body-parser');
+router.get('/', index); 
+router.get('/add', urlencodedParser, add);
+//router.post('/delete/:id');
+//router.post('/update/:id', update); 
+module.exports = router; 
 
 /*
  router.get('/result', (req, res)=>{
@@ -86,9 +100,9 @@ router.get('/personData', (req, res)=>{
   res.render(`personData`);
 });
 
-router.get('/add', (req, res)=>{
+/*router.get('/add', (req, res)=>{
   res.render(`add`);
-});
+});*/
 
 router.post('/delete/:id', (req, res) =>{
   user.findByIdAndRemove({'_id': req.params.id}).exec().then((data)=>{
